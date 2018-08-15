@@ -10,14 +10,22 @@ let defaultState = {
         limit: 2, //每次多显示2条
         offset: 0, //偏移量
         isLoading: false //状态表示是否正在加载
-    }
+    },
+    scrollTop: 0
 };
+
 export default function (state = defaultState, action) {
     switch (action.type) {
         case Types.SET_CURRENT_LESSON:
             return {
                 ...state,
-                currentLesson: action.val
+                currentLesson: action.val,
+                lesson: {
+                    ...state.lesson,
+                    lessonList: [],
+                    offset: 0
+                },
+                scrollTop: 0
             };
         case Types.GET_SLIDER:
             return {
@@ -44,6 +52,11 @@ export default function (state = defaultState, action) {
                     ...state.lesson,
                     isLoading: true
                 }
+            };
+        case Types.SET_SCROLL_TOP:
+            return {
+                ...state,
+                scrollTop: action.scrollTop
             };
         default:
             return state;

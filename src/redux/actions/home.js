@@ -21,3 +21,8 @@ export const getLesson = () => (dispatch, getState) => {
         ...lesson
     });
 };
+
+export const setScrollTop = (scrollTop) => ({
+    type: Types.SET_SCROLL_TOP,
+    scrollTop
+});
